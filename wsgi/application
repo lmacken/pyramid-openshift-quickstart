@@ -1,0 +1,22 @@
+#!/usr/bin/python
+import os, sys
+
+here = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(here, 'pyramidapp'))
+virtenv = os.environ.get('APPDIR', '') + '/virtenv/'
+os.environ['PYTHON_EGG_CACHE'] = os.path.join(virtenv, 'lib/python2.6/site-packages')
+virtualenv = os.path.join(virtenv, 'bin/activate_this.py')
+try:
+    execfile(virtualenv, dict(__file__=virtualenv))
+except:
+    pass
+
+from pyramid.paster import get_app
+config = os.path.join(here, 'pyramidapp', 'production.ini')
+application = get_app(config, 'main')
+
+if __name__  == '__main__':
+    from wsgiref.simple_server import make_server
+    httpd = make_server('localhost', 8051, application)
+    httpd.handle_request()
+ 

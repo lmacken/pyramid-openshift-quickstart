@@ -1,0 +1,5 @@
+pyramid
+repoze.tm2>=1.0b1
+sqlalchemy
+zope.sqlalchemy
+WebError
