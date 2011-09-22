@@ -59,4 +59,4 @@ Monitoring your logs
 
 ::
 
-    rhc-tail-files -a pyramidapp
+    rhc-tail-files -a pyramidapp -l your@email.com
