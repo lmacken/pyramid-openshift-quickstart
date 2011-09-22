@@ -3,6 +3,8 @@ import os, sys
 
 here = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(here, 'pyramidapp'))
+config = os.path.join(here, 'pyramidapp', 'production.ini')
+
 virtenv = os.environ.get('APPDIR', '') + '/virtenv/'
 os.environ['PYTHON_EGG_CACHE'] = os.path.join(virtenv, 'lib/python2.6/site-packages')
 virtualenv = os.path.join(virtenv, 'bin/activate_this.py')
@@ -11,8 +13,10 @@ try:
 except:
     pass
 
+import logging.config
+logging.config.fileConfig(config)
+
 from pyramid.paster import get_app
-config = os.path.join(here, 'pyramidapp', 'production.ini')
 application = get_app(config, 'main')
 
 if __name__  == '__main__':
