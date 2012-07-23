@@ -1,0 +1,36 @@
+#!/bin/bash
+# Pyramid OpenShift post-deploy pre-start configuration
+
+export PATH=$PATH:~/$OPENSHIFT_APP_NAME/virtenv/bin/
+export PYTHON_EGG_CACHE=$OPENSHIFT_APP_NAME/virtenv/lib/python2.6/site-packages
+
+APP=pyramidapp
+
+source ~/$OPENSHIFT_APP_NAME/virtenv/bin/activate
+
+if [ -z $OPENSHIFT_DB_HOST ]
+then
+    echo 1>&2
+    echo 1>&2
+    echo "Could not find mysql database.  Please run:" 1>&2
+    echo "rhc-ctl-app -a $OPENSHIFT_APP_NAME -e add-mysql-5.1" 1>&2
+    echo "then make a sample commit (add whitespace somewhere) and re-push" 1>&2
+    echo 1>&2
+    echo 1>&2
+    exit 5
+fi
+
+cd $OPENSHIFT_REPO_DIR/wsgi/$APP
+
+# Initialize our database
+if [ ! -e $OPENSHIFT_DATA_DIR/DB_INITIALIZED ]; then
+    echo "Initializing database"
+    paster setup-app production.ini
+    touch $OPENSHIFT_DATA_DIR/DB_INITIALIZED
+fi
+
+# Run the test suite automatically
+# At the moment failure does not prevent the code from getting deployed
+echo "Running the test suite"
+unset OPENSHIFT_APP_NAME
+python setup.py test
