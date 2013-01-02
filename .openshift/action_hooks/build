@@ -1,12 +1,13 @@
 #!/bin/bash
 # Pyramid OpenShift post-deploy pre-start configuration
 
-export PATH=$PATH:~/$OPENSHIFT_APP_NAME/virtenv/bin/
-export PYTHON_EGG_CACHE=$OPENSHIFT_APP_NAME/virtenv/lib/python2.6/site-packages
+export PYTHON=python2.6
+export PATH=$PATH:~/$PYTHON/virtenv/bin/
+export PYTHON_EGG_CACHE=~/$PYTHON/virtenv/lib/$PYTHON/site-packages
 
 APP=pyramidapp
 
-source ~/$OPENSHIFT_APP_NAME/virtenv/bin/activate
+source ~/$PYTHON/virtenv/bin/activate
 
 # Have apache serve up all of our static resources
 echo "Symlinking static resources from $APP/public"
