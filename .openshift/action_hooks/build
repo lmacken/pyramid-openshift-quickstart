@@ -3,7 +3,7 @@
 
 export PYTHON=python-2.6
 export PATH=$PATH:~/$PYTHON/virtenv/bin/
-export PYTHON_EGG_CACHE=~/$PYTHON/virtenv/lib/$PYTHON/site-packages
+export PYTHON_EGG_CACHE=~/$PYTHON/virtenv/lib/python2.6/site-packages
 
 APP=pyramidapp
 
