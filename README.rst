@@ -47,7 +47,7 @@ If you don't want to use the `openshift-quickstarter`, you can easily create a n
 
 ::
 
-    rhc app create -a pyramidapp -t wsgi-3.2 -l your@email.com
+    rhc app create -a pyramidapp -t python-2.6 -l your@email.com
     rhc cartridge add -a pyramidapp -c mysql-5.1 -l your@email.com
     cd pyramidapp
     git remote add upstream -m master git://github.com/lmacken/pyramid-openshift-quickstart.git
