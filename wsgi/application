@@ -5,7 +5,7 @@ here = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(here, 'pyramidapp'))
 config = os.path.join(here, 'pyramidapp', 'production.ini')
 
-virtenv = os.environ.get('APPDIR', '') + '/virtenv/'
+virtenv = os.environ.get('APPDIR', '~/') + '/virtenv/'
 os.environ['PYTHON_EGG_CACHE'] = os.path.join(virtenv, 'lib/python2.7/site-packages')
 virtualenv = os.path.join(virtenv, 'bin/activate_this.py')
 try:
