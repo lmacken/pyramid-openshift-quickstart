@@ -1,9 +1,9 @@
 #!/bin/bash
 # Pyramid OpenShift post-deploy pre-start configuration
 
-export PYTHON=python-2.6
+export PYTHON=python-2.7
 export PATH=$PATH:~/$PYTHON/virtenv/bin/
-export PYTHON_EGG_CACHE=~/$PYTHON/virtenv/lib/python2.6/site-packages
+export PYTHON_EGG_CACHE=~/$PYTHON/virtenv/lib/python2.7/site-packages
 
 APP=pyramidapp
 
